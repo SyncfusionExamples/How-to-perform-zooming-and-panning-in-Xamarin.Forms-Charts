@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:local="clr-namespace:ChartZooming"
+             x:Class="ChartZooming.MainPage">
+    <StackLayout WidthRequest="300" HeightRequest="120" >
+        <chart:SfChart Margin="50" x:Name="Chart"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <chart:SfChart.BindingContext>
+                <local:ViewModel/>
+            </chart:SfChart.BindingContext>
+            <!--Horizontal axis declaration-->
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis LabelPlacement="BetweenTicks" ShowMajorGridLines="False"/>
+            </chart:SfChart.PrimaryAxis>
+            <!--Vertical axis declaration-->
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis PlotOffset="15" AxisLineStyle="{x:Null}" />
+            </chart:SfChart.SecondaryAxis>
+            <!--Series declaration-->
+            <chart:SfChart.Series>
+                <chart:LineSeries Color="#1fc1d8" ItemsSource="{Binding ClimateData}" Label="Heights" XBindingPath="Month" YBindingPath="Temperature" >
+                    <chart:LineSeries.DataMarker>
+                        <chart:ChartDataMarker ShowMarker="True"   ShowLabel="False"  MarkerType="Ellipse"  MarkerColor="White">
+                        </chart:ChartDataMarker>
+                    </chart:LineSeries.DataMarker>
+                </chart:LineSeries>
+            </chart:SfChart.Series>
+            <!--ZoomPan behavior declaration-->
+            <chart:SfChart.ChartBehaviors>
+                <chart:ChartZoomPanBehavior/>
+            </chart:SfChart.ChartBehaviors>
+        </chart:SfChart>
+    </StackLayout>
+</ContentPage>
